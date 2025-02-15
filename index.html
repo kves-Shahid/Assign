@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SaulDesign</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #222831; 
+        color: #ffffff; 
+      }
+      .navbar-custom {
+        background-color: #222831;
+        border-bottom: 2px solid #2d2d2d;
+        margin-bottom: 20px;
+      }
+      .navbar-custom .navbar-brand,
+      .navbar-custom .nav-link {
+        color: #f8f9fa;
+        transition: color 0.3s ease-in-out;
+      }
+      .navbar-custom .nav-link.active,
+      .navbar-custom .nav-link:hover {
+        color: #00adb5 !important;
+      }
+      .navbar-custom .navbar-toggler {
+        border-color: #f8f9fa;
+      }
+      .hero-section {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 10%;
+        min-height: 80vh;
+      }
+      .hero-text h1 {
+        font-size: 4rem;
+        font-weight: bold;
+      }
+      .hero-text h2 {
+        font-size: 3rem;
+        color: #00adb5;
+      }
+      .hero-buttons {
+        margin-top: 20px;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        cursor: pointer;
+      }
+      .scroll-down svg {
+        width: 40px;
+        height: 40px;
+        fill: #00adb5;
+        transition: all 0.3s ease;
+      }
+      .scroll-down:hover svg {
+        fill: #00959c;
+        transform: translateY(5px);
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-30px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-15px) translateX(-50%);
+        }
+      }
+      .hero-section,
+      .about-section,
+      .works-section,
+      .contact-section {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+      }
+      .btn-hire {
+        background-color: #00adb5;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        transition: background 0.3s;
+      }
+      .btn-hire:hover {
+        background-color: #00959c;
+      }
+      .btn-cv {
+        background-color: #393e46;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        margin-left: 15px;
+        transition: background 0.3s;
+      }
+      .btn-cv:hover {
+        background-color: #2d2d2d;
+      }
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+      }
+      .about-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 10%;
+        background-color: #222831;
+        gap: 40px;
+      }
+      .about-image {
+        position: relative;
+        width: 45%;
+        min-width: 300px;
+      }
+      .about-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      .about-image .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .about-image .foreground-image {
+        position: relative;
+        z-index: 2;
+        margin-top: 20px;
+      }
+      .about-text {
+        width: 50%;
+        max-width: 600px;
+      }
+      .about-text h2 {
+        font-size: 2.5rem;
+        color: #00adb5;
+        margin-bottom: 20px;
+      }
+      .about-text p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #f8f9fa;
+        margin-bottom: 30px;
+      }
+      .btn-read-more {
+        background-color: #00adb5;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+      .btn-read-more:hover {
+        background-color: #00959c;
+      }
+      .works-section {
+        padding: 80px 10%;
+        position: relative;
+        overflow: hidden;
+        background-image: url("../Html/assets/back.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+      }
+      .works-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(34, 40, 49, 0.8);
+        z-index: -1;
+      }
+      .works-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 40px;
+        justify-content: center;
+      }
+      .works-buttons button {
+        background-color: transparent;
+        color: #00adb5;
+        border: 1px solid #00adb5;
+        padding: 8px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .works-buttons button:hover,
+      .works-buttons button.active {
+        background-color: #00adb5;
+        color: #fff;
+      }
+      .works-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .works-box {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+      }
+      .works-box img {
+        max-width: 90%;
+        max-height: 90%;
+        width: auto;
+        height: auto;
+        border-radius: 8px;
+        object-fit: contain;
+      }
+      .works-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+      .works-box-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-section {
+        padding: 80px 10%;
+        background-color: #222831;
+      }
+      .contact-section img {
+        border-radius: 10px;
+      }
+      .contact-section h2 {
+        color: #00adb5;
+        margin-bottom: 30px;
+      }
+      .contact-section .form-control {
+        background-color: #2d2d2d;
+        border: 1px solid #2d2d2d;
+        color: #fff;
+      }
+      .contact-section .form-control:focus {
+        background-color: #393e46;
+        border-color: #00adb5;
+        color: #fff;
+      }
+      .footer-section {
+        padding: 40px 10%;
+        background-color: #222831;
+        text-align: center;
+      }
+      .footer-links a {
+        color: #f8f9fa;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      .footer-links a:hover {
+        color: #00adb5;
+      }
+      .social-links a {
+        color: #f8f9fa;
+        margin: 0 10px;
+      }
+      .social-links a:hover {
+        color: #00adb5;
+      }
+      @media (max-width: 992px) {
+        .hero-section {
+          flex-direction: column;
+          text-align: center;
+          padding: 60px 5%;
+        }
+        .hero-text h1 {
+          font-size: 3rem;
+        }
+        .hero-text h2 {
+          font-size: 2.5rem;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .hero-buttons .btn-cv {
+          margin-left: 0;
+        }
+        .about-section {
+          flex-direction: column;
+          text-align: center;
+          padding: 60px 5%;
+        }
+        .about-image {
+          width: 100%;
+          min-width: auto;
+        }
+        .about-text {
+          width: 100%;
+          max-width: 100%;
+        }
+        .works-section {
+          padding: 60px 5%;
+        }
+        .works-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .contact-section {
+          padding: 60px 5%;
+        }
+        .contact-section .row {
+          flex-direction: column;
+        }
+        .contact-section img {
+          margin-bottom: 30px;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+        .hero-text h2 {
+          font-size: 2rem;
+        }
+        .about-text h2 {
+          font-size: 2rem;
+        }
+        .works-buttons {
+          flex-direction: column;
+        }
+        .works-buttons button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SaulDesign</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1>CREATIVE UI</h1>
+        <h2>DESIGNER</h2>
+        <div class="hero-buttons">
+          <button class="btn-hire">Hire me</button>
+          <button class="btn-cv">Download CV</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="./assets/study.png"
+          alt="Illustration of a designer with a laptop"
+        />
+      </div>
+      <div class="scroll-down">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-arrow-down"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-section">
+      <div class="about-image">
+        <img
+          src="./assets/back.png"
+          alt="Background illustration"
+          class="background-image"
+        />
+        <img
+          src="./assets/Group 62.png"
+          alt="Foreground illustration"
+          class="foreground-image"
+        />
+      </div>
+      <div class="about-text">
+        <h2>About me</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate libero et velit interdum, ac aliquet odio mattis. Class
+          aptent taciti sociosqu ad litora torquent per conubia nostra, per
+          inceptos himenaeos. Curabitur tempus urna at turpis condimentum
+          lobortis...
+        </p>
+        <button class="btn-read-more">Read more</button>
+      </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="works-section">
+      <h2>My Recent Works</h2>
+      <div class="works-buttons">
+        <button class="active">All</button>
+        <button>UI</button>
+        <button>UX</button>
+        <button>Web Design</button>
+      </div>
+      <div class="works-grid">
+        <div class="works-box">
+          <div class="works-box-content">
+            <img src="./assets/course.png" alt="Course Project" />
+          </div>
+        </div>
+        <div class="works-box">
+          <div class="works-box-content">
+            <img src="./assets/Group 33.png" alt="Group Project" />
+          </div>
+        </div>
+        <div class="works-box">
+          <div class="works-box-content">
+            <img src="./assets/mobile.png" alt="Mobile Project" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="row g-5">
+        <div class="col-md-6">
+          <img
+            src="./assets/contact.png"
+            alt="Project discussion"
+            class="img-fluid"
+          />
+        </div>
+        <div class="col-md-6">
+          <h2>Got a project in mind?</h2>
+          <form>
+            <div class="mb-4">
+              <label for="name" class="form-label">Your name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Name"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="email" class="form-label">Your email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Email"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea
+                class="form-control"
+                id="message"
+                rows="4"
+                placeholder="Message"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-hire">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="footer-links mb-4">
+              <a href="#" class="text-light me-4">Home</a>
+              <a href="#" class="text-light me-4">About Me</a>
+              <a href="#" class="text-light">Contact</a>
+            </div>
+            <div class="social-links mb-4">
+              <a href="#" class="text-light me-3">Facebook</a>
+              <a href="#" class="text-light me-3">Instagram</a>
+              <a href="#" class="text-light me-3">Twitter</a>
+              <a href="#" class="text-light">YouTube</a>
+            </div>
+            <div class="footer-text">
+              <p class="text-light mb-0">Terms of Service - Privacy Policy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
